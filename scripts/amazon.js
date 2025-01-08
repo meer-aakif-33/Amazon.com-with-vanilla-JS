@@ -23,7 +23,7 @@ products.forEach((product) => {
                 $${(product.priceCents / 100).toFixed(2)}
             </div>
 
-            <div class="product-quantity-container">
+            <div class="product-quantity-container js-quantity-container-${product.id}">
                 <select>
                 <option selected value="1">1</option>
                 <option value="2">2</option>
@@ -53,18 +53,23 @@ products.forEach((product) => {
 });
 
 //console.log(productsHTML);
-
 // const grid = document.querySelector('.js-products-grid');
-// console.log('Found .js-products-grid:', grid);
 
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-// Now select the buttons and attach event listeners
+// Add event listeners to "Add to Cart" buttons
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
+
         const productId = button.dataset.productId;
 
+        const quantitySelector = document.querySelector(`.js-quantity-container-${productId} select`)
+
+        const quantity = Number(quantitySelector.value);
+
+//Make Add to cart button interactive
+        /*
         let matchingItem;
 
         cart.forEach((item) => {
@@ -72,24 +77,33 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
                 matchingItem = item
             }
         });
+        */
+       
+        const matchingItem = cart.find(item => item.productId === productId);
+
 
         if (matchingItem) {
-            matchingItem.quantity += 1
+            matchingItem.quantity += quantity;
         } else {
             cart.push({
                 productId: productId,
-                quantity: 1
-            }) 
+                quantity: quantity
+            });
         }
+
+//update the cartQuantity
+
         let cartQuantity = 0;
+
         cart.forEach((item) => {
             cartQuantity += item.quantity;
-        })
+        });
 
         document.querySelector('.js-cart-quantity')
             .innerHTML = cartQuantity;
-        console.log(cart);
-        console.log(`cartQuantity is ${cartQuantity}`);
+
+        //console.log(cart);
+        //console.log(`cartQuantity is ${cartQuantity}`);
     });
 });
 
