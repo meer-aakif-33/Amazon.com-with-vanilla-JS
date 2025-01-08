@@ -1,4 +1,4 @@
-import { cart } from "../scripts/cart.js";
+import { cart, addToCart } from "../scripts/cart.js";
 import { products } from "../data/products.js";
 
 
@@ -60,7 +60,42 @@ products.forEach((product) => {
 //console.log(productsHTML);
 // const grid = document.querySelector('.js-products-grid');
 
+function updateCartQuantity() {
+    //update the cartQuantity
 
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    });
+
+    document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
+}
+
+function displayAddedMessage(productId) {
+            //Added text element
+
+            const addedMessageElement = document.querySelector(`.js-added-to-cart-${productId}`)
+
+            let timeoutId = null;
+    
+            // If the message is already visible and there's an active timeout, clear it
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+    
+            // Show the "Added" message
+            addedMessageElement.classList.add('js-show-added-to-cart');
+    
+            // Set a timeout to hide the message after 3 seconds
+            timeoutId = setTimeout(() => {
+                addedMessageElement.classList.remove('js-show-added-to-cart');
+            }, 1500); // 1.5 seconds timeout
+                
+            //console.log(`Add to Cart clicked for product: ${productId}`);
+    
+}
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 // Add event listeners to "Add to Cart" buttons
@@ -73,6 +108,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
         const quantity = Number(quantitySelector.value);
 
+        addToCart(productId, quantity);
+
+        updateCartQuantity();
+
+        displayAddedMessage(productId);
+
         //Make Add to cart button interactive
         /*
         let matchingItem;
@@ -84,52 +125,8 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         });
         */
 
-        const matchingItem = cart.find(item => item.productId === productId);
-
-
-        if (matchingItem) {
-            matchingItem.quantity += quantity;
-        } else {
-            cart.push({
-                productId: productId,
-                quantity: quantity
-            });
-        }
-
-        //update the cartQuantity
-
-        let cartQuantity = 0;
-
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
-
-        document.querySelector('.js-cart-quantity')
-            .innerHTML = cartQuantity;
-
         //console.log(cart);
         //console.log(`cartQuantity is ${cartQuantity}`);
-
-        //Added text element
-        const addedMessageElement = document.querySelector(`.js-added-to-cart-${productId}`)
-
-        let timeoutId = null;
-
-        // If the message is already visible and there's an active timeout, clear it
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-        }
-
-        // Show the "Added" message
-        addedMessageElement.classList.add('js-show-added-to-cart');
-
-        // Set a timeout to hide the message after 3 seconds
-        timeoutId = setTimeout(() => {
-            addedMessageElement.classList.remove('js-show-added-to-cart');
-        }, 1500); // 1.5 seconds timeout
-            
-        //console.log(`Add to Cart clicked for product: ${productId}`);
-
     });
     
 });

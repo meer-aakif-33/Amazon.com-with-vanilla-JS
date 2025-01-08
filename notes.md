@@ -13,3 +13,10 @@ In the HTML file, add the `type="module"` attribute to the `<script>` tag to ena
 Advantages
 -helps avoid naming conflicts
 -better way to orgnaimse our code
+
+
+import everything
+import * as cartModuIe from
+ca rtModule. ca rt
+ca rtModuIe. addToCart( ' id ' ) ;
+'../data/cart.js';
