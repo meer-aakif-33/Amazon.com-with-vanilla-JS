@@ -1,4 +1,9 @@
-# Get a Variable Out of a File
+Main Idea of JavaScript
+1. Save the data
+2. Generate the HTML
+3. Make it interactive
+
+# Get a Variable Out of a Files
 
 ## 1. Add `type="module"` attribute
 In the HTML file, add the `type="module"` attribute to the `<script>` tag to enable JavaScript modules.
@@ -20,3 +25,6 @@ import * as cartModuIe from
 ca rtModule. ca rt
 ca rtModuIe. addToCart( ' id ' ) ;
 '../data/cart.js';
+
+Normalizing the data
+-just store the product id and get all other details from this id 
