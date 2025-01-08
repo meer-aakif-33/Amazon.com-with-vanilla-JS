@@ -5,7 +5,7 @@ import { formatCurrency } from "./utils/money.js";
 
 let cartSummaryHTML = '';
 cart.forEach((cartItem) => {
-
+    //console.log(cartItem)
     const productId = cartItem.productId
 
     let matchingProduct;
@@ -18,7 +18,8 @@ cart.forEach((cartItem) => {
     //console.log(matchingProduct);
 
   cartSummaryHTML += `
-   <div class="cart-item-container">
+   <div class="cart-item-container 
+            js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
                 Delivery date: Wednesday, June 15
             </div>
@@ -104,6 +105,9 @@ document.querySelectorAll('.js-delete-quantity-link')
         deleteLink.addEventListener('click', () => {
             const productId = deleteLink.dataset.productId
             removeFromCart(productId);
-            console.log(cart);
+            //console.log(cart);
+
+            const container = document.querySelector(`.js-cart-item-container-${productId}`)
+            container.remove();
         });
     });
