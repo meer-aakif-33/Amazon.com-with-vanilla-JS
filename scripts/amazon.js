@@ -1,3 +1,5 @@
+import { cart } from "../scripts/cart.js";
+
 let productsHTML = '';
 products.forEach((product) => {
     productsHTML += `
@@ -40,7 +42,7 @@ products.forEach((product) => {
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart"> 
+            <div class="added-to-cart js-added-to-cart-${product.id}"> 
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
@@ -68,7 +70,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
         const quantity = Number(quantitySelector.value);
 
-//Make Add to cart button interactive
+        //Make Add to cart button interactive
         /*
         let matchingItem;
 
@@ -78,7 +80,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
             }
         });
         */
-       
+
         const matchingItem = cart.find(item => item.productId === productId);
 
 
@@ -91,7 +93,7 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
             });
         }
 
-//update the cartQuantity
+        //update the cartQuantity
 
         let cartQuantity = 0;
 
@@ -104,7 +106,29 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 
         //console.log(cart);
         //console.log(`cartQuantity is ${cartQuantity}`);
+
+        //Added text element
+        const addedMessageElement = document.querySelector(`.js-added-to-cart-${productId}`)
+
+        let timeoutId = null;
+
+        // If the message is already visible and there's an active timeout, clear it
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        // Show the "Added" message
+        addedMessageElement.classList.add('js-show-added-to-cart');
+
+        // Set a timeout to hide the message after 3 seconds
+        timeoutId = setTimeout(() => {
+            addedMessageElement.classList.remove('js-show-added-to-cart');
+        }, 1500); // 1.5 seconds timeout
+            
+        //console.log(`Add to Cart clicked for product: ${productId}`);
+
     });
+    
 });
 
 
