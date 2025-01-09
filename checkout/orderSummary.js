@@ -1,9 +1,9 @@
-import { cart, removeFromCart, updateQuantity, calculateCartQuantity, updateDeliveryOption } from "../scripts/cart.js";
+import { cart, removeFromCart, updateQuantity, calculateCartQuantity, updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "../scripts/utils/money.js";
 import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';;
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js' //default export
-import { deliveryOptions } from "../data/deliveryOptions.js";
+import { deliveryOptions, getDeliveryOption } from "../data/deliveryOptions.js";
 //hello();
 
 const today = dayjs();
@@ -31,13 +31,7 @@ export function renderOrderSummary() {
         //console.log(matchingProduct);
         const deliveryOptionId = cartItem.deliveryOptionId;
 
-        let deliveryOption;
-
-        deliveryOptions.forEach((option) => {
-            if (option.id === deliveryOptionId) {
-                deliveryOption = option;
-            }
-        });
+        const deliveryOption = getDeliveryOption(deliveryOptionId);
 
 
         const today = dayjs();
@@ -207,12 +201,12 @@ export function renderOrderSummary() {
             });
         });
 
-        function handleOnKeyDown(event) {
-            if (event.key === 'Enter') {
-                updateQuantity(productId, newQuantity);
-                updateCartQuantity
-            }
-        }
+        // function handleOnKeyDown(event) {
+        //     if (event.key === 'Enter') {
+        //         updateQuantity(productId, newQuantity);
+        //         updateCartQuantity
+        //     }
+        // }
 
     document.querySelectorAll('.js-delivery-option').forEach((element) => {
         element.addEventListener('click', () => {
