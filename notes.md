@@ -93,3 +93,14 @@ Split our code into 3 parts
 3. Controller = runs some code when we interact with the page
 
 MVC is a design pattern
+
+Testing
+
+Disadvantages of Manual Testing
+1. Hard to test every situation
+2. Hard to re-test
+
+Testing Framework
+1. Create test suite
+2. Create tests
+3. Compare values and display result
