@@ -84,3 +84,12 @@ Instant Update:
 
 Since the DOM is updated directly using JavaScript, the page changes instantly without requiring a refresh.
 
+
+
+MVC
+Split our code into 3 parts
+1. Model = saves and manages the data
+2. View = takes the data and displays it on the page
+3. Controller = runs some code when we interact with the page
+
+MVC is a design pattern
