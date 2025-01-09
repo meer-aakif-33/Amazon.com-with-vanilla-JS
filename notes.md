@@ -28,3 +28,20 @@ ca rtModuIe. addToCart( ' id ' ) ;
 
 Normalizing the data
 -just store the product id and get all other details from this id 
+
+External library
+= code that is outside of our project
+
+Minification : compression of code
+
+dayjs feature:
+Calculate delivery date:
+1. Get today's date
+2. Do calculations
+(Add 7 days, ...)
+3. Display the date in easy-to-read format
+
+ESM Version
+A version that works with JavaScript Modules
+
+Each file can only have 1 default export
