@@ -187,12 +187,21 @@ document.querySelectorAll('.js-save-link')
               );
             const newQuantity = Number(quantityInput.value);
 
+            if (newQuantity <= 0 || newQuantity > 1000) {
+                alert("Quantity must be between 1 and 1000");
+                return;
+            }
             //console.log(newQuantity)
 
             updateQuantity(productId, newQuantity);
+
+            // Update the quantity label in the DOM
+            const quantityLabel = container.querySelector(`.js-quantity-label`);
+            quantityLabel.textContent = `${newQuantity}`;
+            
             updateCartQuantity();
             //console.log(cart)
-            document.querySelector('.js-quantity-label').textContent = `${newQuantity}`;
+            
         });
     });
 

@@ -38,9 +38,9 @@ export function updateQuantity(productId, newQuantity){
         if (productId == cartItem.productId) {
             cartItem.quantity = newQuantity;
         }
+    });
+    saveToStorage();
 
-        saveToStorage();
-    })
 }
 /*
 Steps
