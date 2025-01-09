@@ -74,3 +74,11 @@ export function calculateCartQuantity() {
     });
     return cartQuantity;
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+    const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+
+    matchingItem.deliveryOptionId = deliveryOptionId;
+
+    saveToStorage();
+}

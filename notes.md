@@ -45,3 +45,37 @@ ESM Version
 A version that works with JavaScript Modules
 
 Each file can only have 1 default export
+
+Detailed Workflow for delivery change, how it is working
+User Interaction:
+
+The user clicks on a radio button representing a delivery option for a specific product.
+Event Listener Tracks the Click:
+
+The click event listener attached to all radio buttons with the class js-delivery-option is triggered.
+Retrieve Product and Delivery IDs:
+
+Using element.dataset, the productId and deliveryOptionId stored in the clicked radio button's data-* attributes are accessed:
+javascript
+
+const { productId, deliveryOptionId } = element.dataset;
+Update the Cart:
+
+The cart (or a similar data structure) looks for the product corresponding to the productId.
+The delivery ID for this product in the cart is updated to the new deliveryOptionId.
+Find the Delivery Option Details:
+
+The deliveryOptions array is searched for the object whose id matches the deliveryOptionId:
+javascript
+
+const selectedOption = deliveryOptions.find(option => option.id === deliveryOptionId);
+This provides details such as delivery days and price for the selected delivery option.
+Change the DOM:
+
+The DOM is updated to reflect the changes. For example:
+Update the delivery date display based on the deliveryDays from selectedOption.
+Update the delivery price based on priceCents from selectedOption.
+Instant Update:
+
+Since the DOM is updated directly using JavaScript, the page changes instantly without requiring a refresh.
+
