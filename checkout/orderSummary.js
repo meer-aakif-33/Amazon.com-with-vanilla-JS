@@ -1,13 +1,14 @@
 import { cart, removeFromCart, updateQuantity, calculateCartQuantity, updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "../scripts/utils/money.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';;
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js' //default export
 import { deliveryOptions, getDeliveryOption } from "../data/deliveryOptions.js";
 //hello();
 
-const today = dayjs();
-const delDtae = today.add(7, 'days');
+//const today = dayjs();
+//const delDtae = today.add(7, 'days');
 
 //console.log(delDtae);
 
@@ -136,6 +137,8 @@ export function renderOrderSummary() {
                 container.remove();
 
                 updateCartQuantity();
+
+                renderPaymentSummary();
             });
             
         });
@@ -196,6 +199,7 @@ export function renderOrderSummary() {
                 quantityLabel.textContent = `${newQuantity}`;
                 
                 updateCartQuantity();
+                renderPaymentSummary();
                 //console.log(cart)
                 
             });
@@ -232,6 +236,8 @@ export function renderOrderSummary() {
             deliveryDateElement.textContent = `Delivery date: ${dateString}`;
             */
             renderOrderSummary();
+            renderPaymentSummary();
+
 
         });
     });
