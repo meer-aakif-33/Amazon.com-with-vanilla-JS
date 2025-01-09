@@ -3,6 +3,11 @@ Main Idea of JavaScript
 2. Generate the HTML
 3. Make it interactive
 
+Better than updating the DOM every time
+1. Update the data
+2. Regenerate all the HTML
+
+
 # Get a Variable Out of a Files
 
 ## 1. Add `type="module"` attribute
