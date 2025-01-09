@@ -2,6 +2,8 @@ import { cart, addToCart } from "../scripts/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+updateCartQuantity();
+
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -60,7 +62,7 @@ products.forEach((product) => {
 //console.log(productsHTML);
 // const grid = document.querySelector('.js-products-grid');
 
-function updateCartQuantity() {
+export function updateCartQuantity() {
     //update the cartQuantity
 
     let cartQuantity = 0;

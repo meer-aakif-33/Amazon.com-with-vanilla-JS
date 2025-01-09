@@ -24,7 +24,20 @@ export function addToCart(productId, quantity){
         });
     }
 
+    console.log("Cart after adding item:", cart);
+
     saveToStorage();
+}
+
+export function updateQuantity(productId, newQuantity){
+
+    cart.forEach((cartItem) => {
+        if (productId == cartItem.productId) {
+            cartItem.quantity = newQuantity;
+        }
+
+        saveToStorage();
+    })
 }
 /*
 Steps
@@ -47,4 +60,14 @@ export function removeFromCart(productId) {
 
     saveToStorage();
 
+}
+
+export function calculateCartQuantity() {
+
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    });
+    return cartQuantity;
 }
