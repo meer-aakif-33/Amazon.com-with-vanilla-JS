@@ -104,3 +104,10 @@ Testing Framework
 1. Create test suite
 2. Create tests
 3. Compare values and display result
+
+
+Object-Oriented Programming (OOP)
+- another style of programming (another way we write our code)
+
+Procedural Programming
+- Procedure = a set of step-by-step instructions = a function
