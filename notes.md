@@ -111,3 +111,14 @@ Object-Oriented Programming (OOP)
 
 Procedural Programming
 - Procedure = a set of step-by-step instructions = a function
+
+What is backend? = another computer that manages the data of a website
+
+How does our computer send using information to the backend?
+HTTP = HyperText Transfer Protocol
+
+to send HTTP request we use class XMLHttpRequest(provided by JS)
+
+GET = get some information from the backend
+
+Using the browser = making a GET request
