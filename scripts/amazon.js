@@ -1,11 +1,18 @@
 import { cart, addToCart } from "../data/cart.js";
-import { products } from "../data/products.js";
+import { products,  } from "../data/products.js";
+import { loadProducts  } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
 updateCartQuantity();
 
+loadProducts(renderProductsGrid);
+
+
+function renderProductsGrid() {
+    console.log("Rendering product grid..."); 
 let productsHTML = '';
 
+// Generate product cards
 products.forEach((product) => {
     productsHTML += `
         <div class="product-container">
@@ -61,8 +68,52 @@ products.forEach((product) => {
         </div>`;
 });
 
+
 //console.log(productsHTML);
-// const grid = document.querySelector('.js-products-grid');
+
+// Inject the generated HTML into the DOM
+const grid = document.querySelector('.js-products-grid');
+if (!grid) {
+    console.error("The .js-products-grid element is missing from the DOM.");
+    return;
+}
+
+grid.innerHTML = productsHTML;
+
+// Add event listeners to "Add to Cart" buttons
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+    button.addEventListener('click', () => {
+
+        const productId = button.dataset.productId;
+
+        const quantitySelector = document.querySelector(`.js-quantity-container-${productId} select`)
+
+        const quantity = Number(quantitySelector.value);
+
+        addToCart(productId, quantity);
+
+        updateCartQuantity();
+
+        displayAddedMessage(productId);
+
+        //Make Add to cart button interactive
+        /*
+        let matchingItem;
+
+        cart.forEach((item) => {
+            if (productId === item.productId) {
+                matchingItem = item
+            }
+        });
+        */
+
+        //console.log(cart);
+        //console.log(`cartQuantity is ${cartQuantity}`);
+    });
+    
+});
+}
+
 
 export function updateCartQuantity() {
     //update the cartQuantity
@@ -100,40 +151,6 @@ function displayAddedMessage(productId) {
             //console.log(`Add to Cart clicked for product: ${productId}`);
     
 }
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
-
-// Add event listeners to "Add to Cart" buttons
-document.querySelectorAll('.js-add-to-cart').forEach((button) => {
-    button.addEventListener('click', () => {
-
-        const productId = button.dataset.productId;
-
-        const quantitySelector = document.querySelector(`.js-quantity-container-${productId} select`)
-
-        const quantity = Number(quantitySelector.value);
-
-        addToCart(productId, quantity);
-
-        updateCartQuantity();
-
-        displayAddedMessage(productId);
-
-        //Make Add to cart button interactive
-        /*
-        let matchingItem;
-
-        cart.forEach((item) => {
-            if (productId === item.productId) {
-                matchingItem = item
-            }
-        });
-        */
-
-        //console.log(cart);
-        //console.log(`cartQuantity is ${cartQuantity}`);
-    });
-    
-});
 
 
 
